@@ -1,0 +1,460 @@
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --cream: #FBF8F3;
+      --ink: #1E1C18;
+      --ink-muted: #6B6860;
+      --ink-faint: #B5B2A9;
+      --purple-deep: #3C3489;
+      --purple-mid: #534AB7;
+      --purple-light: #EEEDFE;
+      --teal: #1D9E75;
+      --amber: #E09F27;
+      --border: rgba(30,28,24,0.1);
+    }
+
+    html, body {
+      height: 100%;
+      overflow: hidden;
+    }
+
+    body {
+      font-family: 'Noto Sans KR', sans-serif;
+      background: var(--cream);
+      color: var(--ink);
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ─── DOT GRID BG ─── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: radial-gradient(circle, rgba(30,28,24,0.12) 1px, transparent 1px);
+      background-size: 26px 26px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 50% at 80% 90%, rgba(29,158,117,0.08) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 40% at 10% 10%, rgba(206,203,246,0.15) 0%, transparent 55%),
+        radial-gradient(ellipse 40% 35% at 90% 10%, rgba(250,199,117,0.1) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: relative;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 56px;
+      height: 64px;
+      border-bottom: 1px solid var(--border);
+      background: rgba(251,248,243,0.88);
+      backdrop-filter: blur(12px);
+      flex-shrink: 0;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .logo-mark {
+      width: 34px;
+      height: 34px;
+      background: var(--purple-deep);
+      border-radius: 9px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .logo-mark svg {
+      width: 18px;
+      height: 18px;
+      fill: none;
+      stroke: #fff;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .logo-name {
+      font-family: 'Gowun Batang', serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--ink);
+      letter-spacing: -0.5px;
+    }
+
+    .logo-name em {
+      font-style: normal;
+      color: var(--purple-deep);
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn {
+      font-family: 'Noto Sans KR', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      padding: 8px 20px;
+      border-radius: 100px;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s ease;
+      letter-spacing: -0.2px;
+    }
+
+    .btn-ghost {
+      background: transparent;
+      border: 1.5px solid var(--border);
+      color: var(--ink-muted);
+    }
+
+    .btn-ghost:hover {
+      background: rgba(30,28,24,0.05);
+      color: var(--ink);
+    }
+
+    .btn-solid {
+      background: var(--ink);
+      color: var(--cream);
+    }
+
+    .btn-solid:hover {
+      background: var(--purple-deep);
+    }
+
+    /* ─── MAIN CONTENT ─── */
+    main {
+      position: relative;
+      z-index: 1;
+      flex: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 0;
+    }
+
+    /* ─── LEFT ─── */
+    .left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 0 56px;
+      gap: 28px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: var(--purple-light);
+      color: var(--purple-deep);
+      border: 1px solid rgba(83,74,183,0.2);
+      border-radius: 100px;
+      padding: 6px 14px;
+      font-size: 12px;
+      font-weight: 500;
+      width: fit-content;
+      animation: fadeUp 0.5s 0.1s both;
+    }
+
+    .badge-pulse {
+      width: 7px;
+      height: 7px;
+      background: var(--purple-mid);
+      border-radius: 50%;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.75); }
+    }
+
+    .headline {
+      font-family: 'Gowun Batang', serif;
+      font-size: clamp(32px, 3.2vw, 48px);
+      line-height: 1.25;
+      letter-spacing: -1.5px;
+      color: var(--ink);
+      animation: fadeUp 0.5s 0.2s both;
+    }
+
+    .headline .hl {
+      position: relative;
+      display: inline-block;
+      color: var(--purple-deep);
+    }
+
+    .headline .hl::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -3px;
+      height: 4px;
+      background: var(--amber);
+      border-radius: 2px;
+    }
+
+    .desc {
+      font-size: 15px;
+      line-height: 1.85;
+      color: var(--ink-muted);
+      max-width: 420px;
+      animation: fadeUp 0.5s 0.3s both;
+    }
+
+    .cta-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      animation: fadeUp 0.5s 0.4s both;
+    }
+
+    .btn-cta {
+      font-family: 'Noto Sans KR', sans-serif;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--purple-deep);
+      color: #fff;
+      border: none;
+      border-radius: 100px;
+      padding: 14px 30px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.22s ease;
+      letter-spacing: -0.3px;
+    }
+
+    .btn-cta:hover {
+      background: var(--purple-mid);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(60,52,137,0.25);
+    }
+
+    .btn-cta svg {
+      width: 15px;
+      height: 15px;
+      fill: none;
+      stroke: #fff;
+      stroke-width: 2.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .link-demo {
+      font-size: 13px;
+      color: var(--ink-faint);
+      cursor: pointer;
+      background: none;
+      border: none;
+      font-family: 'Noto Sans KR', sans-serif;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      transition: color 0.2s;
+    }
+
+    .link-demo:hover { color: var(--ink); }
+
+    .kpi-row {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      animation: fadeUp 0.5s 0.5s both;
+    }
+
+    .kpi { text-align: left; }
+
+    .kpi-num {
+      font-family: 'Gowun Batang', serif;
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .kpi-label {
+      font-size: 11px;
+      color: var(--ink-faint);
+      margin-top: 2px;
+    }
+
+    .kpi-sep {
+      width: 1px;
+      height: 32px;
+      background: var(--border);
+    }
+
+    /* ─── RIGHT ─── */
+    .right {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px 56px 24px 16px;
+      animation: fadeUp 0.6s 0.35s both;
+    }
+
+    /* ─── FEATURE GRID ─── */
+    .feature-grid {
+      width: 100%;
+      max-width: 420px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .feat-card {
+      background: rgba(255,255,255,0.88);
+      border: 1px solid rgba(30,28,24,0.08);
+      border-radius: 18px;
+      padding: 20px 18px;
+      box-shadow: 0 4px 18px rgba(30,28,24,0.06);
+      backdrop-filter: blur(12px);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      cursor: default;
+    }
+
+    .feat-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 28px rgba(30,28,24,0.1);
+    }
+
+    /* wide card spans full row */
+    .feat-card.wide {
+      grid-column: 1 / -1;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .feat-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-bottom: 12px;
+    }
+
+    .feat-card.wide .feat-icon {
+      margin-bottom: 0;
+      width: 44px;
+      height: 44px;
+    }
+
+    .feat-icon svg {
+      width: 20px;
+      height: 20px;
+      fill: none;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .feat-card.wide .feat-icon svg {
+      width: 22px;
+      height: 22px;
+    }
+
+    .feat-body { flex: 1; }
+
+    .feat-name {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 5px;
+      letter-spacing: -0.3px;
+    }
+
+    .feat-desc {
+      font-size: 11.5px;
+      line-height: 1.6;
+      color: var(--ink-muted);
+    }
+
+    /* color themes */
+    .c-purple .feat-icon { background: var(--purple-light); }
+    .c-purple .feat-icon svg { stroke: var(--purple-deep); }
+
+    .c-teal .feat-icon { background: rgba(29,158,117,0.12); }
+    .c-teal .feat-icon svg { stroke: var(--teal); }
+
+    .c-amber .feat-icon { background: rgba(224,159,39,0.12); }
+    .c-amber .feat-icon svg { stroke: var(--amber); }
+
+    .c-rose .feat-icon { background: rgba(220,80,80,0.1); }
+    .c-rose .feat-icon svg { stroke: #C94F4F; }
+
+    /* ─── FOOTER ─── */
+    footer {
+      position: relative;
+      z-index: 10;
+      padding: 12px 56px;
+      border-top: 1px solid var(--border);
+      background: rgba(251,248,243,0.88);
+      backdrop-filter: blur(12px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-shrink: 0;
+    }
+
+    .chips {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .chip {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      background: rgba(255,255,255,0.8);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 5px 12px;
+      font-size: 11px;
+      color: var(--ink-muted);
+    }
+
+    .chip svg {
+      width: 12px;
+      height: 12px;
+      fill: none;
+      stroke: var(--purple-mid);
+      stroke-width: 2;
+      stroke-linecap: round;
+    }
+
+    .footer-note {
+      font-size: 11px;
+      color: var(--ink-faint);
+    }
+
+    /* ─── ANIMATIONS ─── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
